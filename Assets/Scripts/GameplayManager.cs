@@ -8,23 +8,33 @@ public class GameplayManager : MonoBehaviour {
     [SerializeField] private GameObject winOverlay;
     private bool playerWon;
     private LevelProgress levelProgress;
+    [SerializeField] private GameObject helpCanvas;
+    private bool helpEnabled;
     
     void Start() {
         levelProgress = FindObjectOfType<LevelProgress>();
         currentOrigin.SetConnected();
         transform.position = currentOrigin.transform.position;
         winOverlay.SetActive(false);
+        helpCanvas.SetActive(false);
     }
 
     void Update() {
         if (playerWon) {
             currentOrigin.transform.Rotate(Clockwise, Time.deltaTime * turnRate);
+            return;
         }
-        if (Input.GetKey(KeyCode.A)) {
+
+        if (Input.GetKeyDown(KeyCode.H)) {
+            helpEnabled = !helpEnabled;
+            helpCanvas.SetActive(helpEnabled);
+        }
+        
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.RightArrow)) {
             currentOrigin.transform.Rotate(CounterClockwise, Time.deltaTime * turnRate);
         }
 
-        if (Input.GetKey(KeyCode.D)) {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow)) {
             currentOrigin.transform.Rotate(Clockwise, Time.deltaTime * turnRate);
         }
     }

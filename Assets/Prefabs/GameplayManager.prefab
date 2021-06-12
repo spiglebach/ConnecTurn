@@ -46,3 +46,4 @@ MonoBehaviour:
   currentOrigin: {fileID: 0}
   turnRate: 100
   winOverlay: {fileID: 0}
+  helpCanvas: {fileID: 0}
