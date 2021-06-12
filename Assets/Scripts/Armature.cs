@@ -4,8 +4,6 @@ public class Armature : MonoBehaviour {
     private bool connected;
     private GameplayManager gameplayManager;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Color defaultColor;
-    [SerializeField] private Color controllingColor;
 
     private void Start() {
         gameplayManager = FindObjectOfType<GameplayManager>();
@@ -22,12 +20,8 @@ public class Armature : MonoBehaviour {
         unconnectedArmature.AbsorbAndGiveControl(transform);
     }
 
-    public void SetDefaultColor() {
-        spriteRenderer.color = defaultColor;
-    }
-
-    public void SetControllingColor() {
-        spriteRenderer.color = controllingColor;
+    public void SetHingeColor(Color color) {
+        spriteRenderer.color = color;
     }
 
     private void AbsorbAndGiveControl(Transform absorbedTransform) {

@@ -9,14 +9,17 @@ public class GameplayManager : MonoBehaviour {
     private bool playerWon;
     private LevelProgress levelProgress;
     [SerializeField] private GameObject helpCanvas;
-    private bool helpEnabled;
+    [SerializeField] private bool helpEnabled;
+    [SerializeField] private Color defaultColor = new Color(0.8f, 0.8f, 0.8f, 1);
+    [SerializeField] private Color controllingColor = new Color(0, 0.8f, 0, 1);
     
     void Start() {
         levelProgress = FindObjectOfType<LevelProgress>();
         currentOrigin.SetConnected();
         transform.position = currentOrigin.transform.position;
         winOverlay.SetActive(false);
-        helpCanvas.SetActive(false);
+        helpCanvas.SetActive(helpEnabled);
+        currentOrigin.SetHingeColor(controllingColor);
     }
 
     void Update() {
@@ -29,6 +32,7 @@ public class GameplayManager : MonoBehaviour {
             helpEnabled = !helpEnabled;
             helpCanvas.SetActive(helpEnabled);
         }
+        if (helpEnabled) return;
         
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
             currentOrigin.transform.Rotate(CounterClockwise, Time.deltaTime * turnRate);
@@ -46,19 +50,15 @@ public class GameplayManager : MonoBehaviour {
         if (currentOrigin.TryGetComponent(out Rigidbody2D oldRigidbody)) {
             Destroy(oldRigidbody);
         }*/
-        currentOrigin.SetDefaultColor();
-        newOrigin.SetControllingColor();
+        currentOrigin.SetHingeColor(defaultColor);
+        newOrigin.SetHingeColor(controllingColor);
         currentOrigin.transform.SetParent(newOrigin.transform);
         currentOrigin = newOrigin;
     }
 
     public void Win() {
-        if (playerWon) {
-            return;
-        }
-        if (levelProgress) {
-            levelProgress.LevelComplete();
-        }
+        if (playerWon) return;
+        if (levelProgress) levelProgress.LevelComplete();
         playerWon = true;
         winOverlay.SetActive(true);
     }
