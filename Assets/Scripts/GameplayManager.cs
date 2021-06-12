@@ -30,11 +30,11 @@ public class GameplayManager : MonoBehaviour {
             helpCanvas.SetActive(helpEnabled);
         }
         
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.RightArrow)) {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
             currentOrigin.transform.Rotate(CounterClockwise, Time.deltaTime * turnRate);
         }
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow)) {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
             currentOrigin.transform.Rotate(Clockwise, Time.deltaTime * turnRate);
         }
     }
