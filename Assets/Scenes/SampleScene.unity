@@ -348,8 +348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1198978225}
-  defaultColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  controllingColor: {r: 0, g: 0.8, b: 0, a: 1}
 --- !u!50 &666136768
 Rigidbody2D:
   serializedVersion: 4
@@ -719,6 +717,10 @@ PrefabInstance:
     - target: {fileID: 4219684141984322594, guid: bee82c2dff2850a4392e4808c02c7dae, type: 3}
       propertyPath: m_Name
       value: Help Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219684141984322594, guid: bee82c2dff2850a4392e4808c02c7dae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4219684141984322598, guid: bee82c2dff2850a4392e4808c02c7dae, type: 3}
       propertyPath: m_Pivot.x

@@ -10,13 +10,16 @@ public class Armature : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("collision");
         if (!connected) {
             return;
         }
         if (!other.TryGetComponent(out Armature unconnectedArmature)) {
             return;
         }
+        if (unconnectedArmature.IsConnected()) {
+            return;
+        }
+        Debug.Log("absorbed");
         unconnectedArmature.AbsorbAndGiveControl(transform);
     }
 
@@ -31,5 +34,9 @@ public class Armature : MonoBehaviour {
 
     public void SetConnected() {
         connected = true;
+    }
+
+    public bool IsConnected() {
+        return connected;
     }
 }
