@@ -30,6 +30,14 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void SetArmatureAsOrigin(Armature newOrigin) {
+        /*if (currentOrigin.TryGetComponent(out CompositeCollider2D oldCollider)) {
+            Destroy(oldCollider);
+        }
+        if (currentOrigin.TryGetComponent(out Rigidbody2D oldRigidbody)) {
+            Destroy(oldRigidbody);
+        }*/
+        currentOrigin.SetDefaultColor();
+        newOrigin.SetControllingColor();
         currentOrigin.transform.SetParent(newOrigin.transform);
         currentOrigin = newOrigin;
     }
