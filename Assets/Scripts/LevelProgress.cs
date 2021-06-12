@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelProgress : MonoBehaviour {
     private int completeLevels = -1;
@@ -10,6 +10,10 @@ public class LevelProgress : MonoBehaviour {
         } else {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void LevelComplete() {
+        LevelComplete(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LevelComplete(int levelIndex) {

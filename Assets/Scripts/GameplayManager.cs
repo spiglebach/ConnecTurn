@@ -7,8 +7,10 @@ public class GameplayManager : MonoBehaviour {
     private readonly Vector3 Clockwise = new Vector3(0, 0, -1);
     [SerializeField] private GameObject winOverlay;
     private bool playerWon;
+    private LevelProgress levelProgress;
     
     void Start() {
+        levelProgress = FindObjectOfType<LevelProgress>();
         currentOrigin.SetConnected();
         transform.position = currentOrigin.transform.position;
         winOverlay.SetActive(false);
@@ -35,6 +37,9 @@ public class GameplayManager : MonoBehaviour {
     public void Win() {
         if (playerWon) {
             return;
+        }
+        if (levelProgress) {
+            levelProgress.LevelComplete();
         }
         playerWon = true;
         winOverlay.SetActive(true);
