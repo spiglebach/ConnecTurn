@@ -19,10 +19,10 @@ public class LevelLoaderIcon : MonoBehaviour {
         status = _levelProgress.GetLevelStatus(levelIndex);
         var buttonColors = _button.colors;
         if (status == LevelStatus.Complete) {
-            buttonColors.normalColor = Color.green;
+            buttonColors.normalColor = new Color(0, 0.8f, 0, 1);
         }
         if (status == LevelStatus.Current) {
-            buttonColors.normalColor = new Color(1f, 0.9f, 0);
+            buttonColors.normalColor = new Color(1f, 0.8f, 0);
         }
         if (status == LevelStatus.Locked) {
             buttonColors.normalColor = Color.gray;
